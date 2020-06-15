@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+<script src="./jquery-3.5.1.js"></script>
+<script>
+  // ***实例1-ajax--------
+  // $.ajax({
+  //   url: 'data/1.json',
+  //   dataType: 'json',
+  //   success(data1) {
+  //     $.ajax({
+  //       url: 'data/2.json',
+  //       dataType: 'json',
+  //       success(data2) {
+  //         $.ajax({
+  //           url: 'data/3.json',
+  //           dataType: 'json',
+  //           success(data3) {
+  //             document.getElementById('app').innerHTML = JSON.stringify([ data1, data2, data3 ])
+  //           }
+  //         })
+  //       }
+  //     })
+  //   }
+  // })
+
+  // ***实例3-Promise--------
+  // function pro1() {
+  //   return new Promise(function (resolve, reject) {
+  //     $.ajax({
+  //       url: 'data/1.json',
+  //       dataType: 'json',
+  //       success(data) {
+  //         resolve(data);
+  //       },
+  //       error(res) {
+  //         reject(res);
+  //       }
+  //     })
+  //   }).catch(err => {
+  //     console.log(err);
+  //   })
+  // }
+
+  // function pro2() {
+  //   return new Promise(function (resolve, reject) {
+  //     $.ajax({
+  //       url: 'data/2.json',
+  //       dataType: 'json',
+  //       success(data) {
+  //         resolve(data);
+  //       },
+  //       error(res) {
+  //         reject(res);
+  //       }
+  //     })
+  //   }).catch(err => {
+  //     console.log(err);
+  //   })
+  // }
+
+  // function pro3() {
+  //   return new Promise(function (resolve, reject) {
+  //     $.ajax({
+  //       url: 'data/3.json',
+  //       dataType: 'json',
+  //       success(data) {
+  //         resolve(data);
+  //       },
+  //       error(res) {
+  //         reject(res);
+  //       }
+  //     })
+  //   }).catch(err => {
+  //     console.log(err);
+  //   })
+  // }
+  // pro1().then(pro2).then(pro3).then(data => { console.log(data) });
+
+  // ***实例4-Promise.all--------
+  // Promise.all([
+  //   $.ajax({ url: './data/1.json', dataType: 'json' }),
+  //   $.ajax({ url: './data/2.json', dataType: 'json' }),
+  //   $.ajax({ url: './data/3.json', dataType: 'json' })
+  // ]).then(arr => {
+  //   let [ data1, data2, data3 ] = arr;
+  //   console.log(arr);
+  //   console.log(data1, data2, data3);
+  // }, err => {
+  //   console.log('错了')
+  // })
+
+  // ***实例5-async/await--------推荐使用
+  async function show() {
+    let data1 = await $.ajax({ url: './data/1.json', dataType: 'json' })
+    let data2 = await $.ajax({ url: './data/2.json', dataType: 'json' })
+    let data3 = await $.ajax({ url: './data/3.json', dataType: 'json' })
+    console.log(data1, data2, data3);
+  }
+  show();
+</script>
+
+</html>
